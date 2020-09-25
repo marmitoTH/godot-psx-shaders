@@ -17,6 +17,7 @@ void vertex() {
 	float vertex_distance = length((MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
 	
 	VERTEX = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	NORMAL = abs(vec4(NORMAL, 1.) * MODELVIEW_MATRIX).xyz;
 	float vPos_w = (PROJECTION_MATRIX * vec4(VERTEX, 1.0)).w;
 	VERTEX.xy = vPos_w * floor(resolution * VERTEX.xy / vPos_w) / resolution;
 	vertex_coordinates = vec4(UV * VERTEX.z, VERTEX.z, .0);
